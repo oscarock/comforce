@@ -4,15 +4,14 @@ new Vue({
         this.getAll()
     },
     data: {
-      
+        processes:[]
     },
     
     methods: {
         getAll: function(page){
-            var urlsuperhero = "api/superheros?page=" + page
-            axios.get(urlsuperhero).then(response => {
-                this.superhero = response.data.superheros.data
-                this.pagination = response.data.pagination
+            var urlProcesses = "processes"
+            axios.get(urlProcesses).then(response => {
+               this.processes = response.data
             })
         },
     }

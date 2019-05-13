@@ -44,7 +44,7 @@
                         @else
                             @if(Auth::user()->profile_id == 1)
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Mis Procesos') }}</a>
+                                    <a class="nav-link" href="{{ url('my-processes') }}">{{ __('Mis Procesos') }}</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Registrar Procesos') }}</a>
