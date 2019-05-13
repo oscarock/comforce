@@ -20,5 +20,17 @@ class DatabaseSeeder extends Seeder
         DB::table('profiles')->insert([
             'name' => 'Aprobador',
         ]);
+
+        DB::table('states')->insert([
+            'name' => 'Creado',
+        ]);
+
+        DB::table('states')->insert([
+            'name' => 'Finalizado',
+        ]);
+
+        DB::table('states')->insert([
+            'name' => 'Aprobado',
+        ]);
     }
 }
