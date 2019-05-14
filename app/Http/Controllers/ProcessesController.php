@@ -7,6 +7,11 @@ use App\Process;
 
 class ProcessesController extends Controller
 {
+    /*public function __contruct(){
+        $this->middleware('auth');
+        $this->middleware('guest');
+    }*/
+    
     /**
      * Display a listing of the resource.
      *

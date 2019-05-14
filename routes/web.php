@@ -19,12 +19,16 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('my-processes', function () {
-    return view('processes.index');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('my-processes', function () {
+        return view('processes.index');
+    });
+    
+    Route::get('saveDates', 'ProcessesController@saveDates');
+    
+    Route::resource('processes','ProcessesController');
 });
 
-Route::get('saveDates', 'ProcessesController@saveDates');
-
-Route::resource('processes','ProcessesController');
 
 
