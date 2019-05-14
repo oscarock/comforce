@@ -36,7 +36,22 @@ class ProcessesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'description' => 'required',
+            'department' => 'required',
+            'municipality' => 'required'
+        ]);
+
+        //Process::create($request->all());
+
+        $processes = new Process;
+        $processes->processes_id = uniqid();
+        $processes->description = $request->input('description');
+        $processes->department = $request->input('department');
+        $processes->municipality = $request->input('municipality');
+        $processes->save();
+
+        return;
     }
 
     /**
