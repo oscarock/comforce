@@ -2,7 +2,6 @@
 
 @section('content')
 <div class="container" id="app">
-    <?php //var_dump($processes);  ?>
     <div class="row">
         <div class="col-md-6">
             <h3>Datos Generales</h3>
@@ -30,7 +29,7 @@
         <div class="col-md-6 pt-5">
             <h3>Fechas del Proceso</h3>
             <div class="col-md-6">
-                <form method="POST" v-on:submit.prevent="saveDates">
+                <form method="POST" v-on:submit.prevent="saveDates({{$processes->id}})">
                     <label for="">Fecha Inicio:</label>
                     <input class="form-control" type="datetime-local" id="example-datetime-local-input" v-model="start_date">
                     <label for="">Fecha Fin:</label>

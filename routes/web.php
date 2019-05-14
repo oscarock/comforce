@@ -23,4 +23,8 @@ Route::get('my-processes', function () {
     return view('processes.index');
 });
 
+Route::get('saveDates', 'ProcessesController@saveDates');
+
 Route::resource('processes','ProcessesController');
+
+

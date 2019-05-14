@@ -100,4 +100,11 @@ class ProcessesController extends Controller
     {
         //
     }
+
+    public function saveDates(Request $request){
+        $processes = Process::findOrFail($request->input('id'));
+        $processes->start_date = $request->input('start_date');
+        $processes->end_date = $request->input('end_date');
+        $processes->save();
+    }
 }

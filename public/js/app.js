@@ -24462,6 +24462,9 @@ new Vue({
         department: "",
         municipality: "",
         errors: [],
+        id: "",
+        start_date: "",
+        end_date: ""
     },
     
     methods: {
@@ -24472,7 +24475,6 @@ new Vue({
             })
         },
         createProcesses: function(){
-            //console.log("entre")
             var urlCreate = "processes"
             axios.post(urlCreate, {
                 description: this.description,
@@ -24494,8 +24496,23 @@ new Vue({
             var urlShow = "processes/" + processes.id
             window.location.href = urlShow
         },
-        saveDates:function(){
-            console.log("entre")
+        saveDates: function(id){
+            console.log("entre js")
+            console.log(id)
+            var urlSaveDates = "../saveDates"
+            axios.get(urlSaveDates, {
+                params: {
+                    id: id,
+                    start_date: this.start_date,
+                    end_date: this.end_date
+                }
+            }).then(response => {
+                this.start_date = ""
+                this.end_date = ""
+                toastr.success("Guardado Correctamente")
+            }).catch(error => {
+                //this.errors = error.response.data.errors
+            })
         }
     }
 })
