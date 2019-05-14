@@ -24,7 +24,12 @@
                     <td>@{{ processes.description }}</td>
                     <td>@{{ processes.department }}</td>
                     <td>@{{ processes.municipality }}</td>
-                    <td>@{{ processes.state_id }}</td>
+                    <td>
+                        <span class="badge badge-primary" v-if="processes.state_id == 1">Creado</span>
+                        <span class="badge badge-warning" v-if="processes.state_id == 2">Finalizado</span>
+                        <span class="badge badge-success" v-if="processes.state_id == 3">Aprobado</span>
+                        <span class="badge badge-danger"  v-if="processes.state_id == 4">No Aprobado</span>
+                    </td>
                     <td>
                     <a href="#" v-on:click.prevent="viewProcesses(processes)"><i class="far fa-eye"></i></a>
                     </td>

@@ -9,6 +9,8 @@ new Vue({
         department: "",
         municipality: "",
         errors: [],
+        start_date: "",
+        end_date: ""
     },
     
     methods: {
@@ -19,7 +21,6 @@ new Vue({
             })
         },
         createProcesses: function(){
-            //console.log("entre")
             var urlCreate = "processes"
             axios.post(urlCreate, {
                 description: this.description,
@@ -40,6 +41,9 @@ new Vue({
         viewProcesses:function(processes){
             var urlShow = "processes/" + processes.id
             window.location.href = urlShow
+        },
+        saveDates: function(){
+            console.log("entre")
         }
     }
 })

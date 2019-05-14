@@ -24493,6 +24493,9 @@ new Vue({
         viewProcesses:function(processes){
             var urlShow = "processes/" + processes.id
             window.location.href = urlShow
+        },
+        saveDates:function(){
+            console.log("entre")
         }
     }
 })
