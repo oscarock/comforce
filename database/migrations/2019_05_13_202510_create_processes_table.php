@@ -19,6 +19,8 @@ class CreateProcessesTable extends Migration
             $table->text('description');
             $table->string('department');
             $table->string('municipality');
+            $table->dateTime('start_date');
+            $table->dateTime('end_date');
             $table->integer('state_id')->unsigned()->nullable();
             $table->timestamps();
         });
