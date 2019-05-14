@@ -37,5 +37,9 @@ new Vue({
                 this.errors = error.response.data.errors
             })
         },
+        viewProcesses:function(processes){
+            var urlShow = "processes/" + processes.id
+            window.location.href = urlShow
+        }
     }
 })

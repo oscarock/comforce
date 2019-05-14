@@ -49,6 +49,7 @@ class ProcessesController extends Controller
         $processes->description = $request->input('description');
         $processes->department = $request->input('department');
         $processes->municipality = $request->input('municipality');
+        $processes->state_id = 1;
         $processes->save();
 
         return;
@@ -62,7 +63,8 @@ class ProcessesController extends Controller
      */
     public function show($id)
     {
-        //
+        $processes = Process::findOrFail($id);
+        return view('processes.view',compact('processes')); 
     }
 
     /**

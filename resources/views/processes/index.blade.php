@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container pt-5" id="app">
+<div class="container" id="app">
     <div class="row">
         <div class="col-md-12">
             <h1 class="page-header text-center py-4">Mis Procesos</h1>
@@ -16,6 +16,7 @@
                     <th>Descripcion</th>
                     <th>Departamento</th>
                     <th>Municipio</th>
+                    <th>Estado</th>
                     <th></th>
                 </tr>
                 <tr v-for="processes in processes">
@@ -23,9 +24,9 @@
                     <td>@{{ processes.description }}</td>
                     <td>@{{ processes.department }}</td>
                     <td>@{{ processes.municipality }}</td>
+                    <td>@{{ processes.state_id }}</td>
                     <td>
-                    <a href="#" v-on:click.prevent="viewBlog(blogs)"><i class="far fa-eye"></i></a>
-                    <a href="#" v-on:click.prevent="deleteBlog(blogs)"><i class="far fa-trash-alt"></i></a>
+                    <a href="#" v-on:click.prevent="viewProcesses(processes)"><i class="far fa-eye"></i></a>
                     </td>
                 </tr>
             </table>
