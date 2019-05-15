@@ -26,11 +26,11 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('states')->insert([
-            'name' => 'Finalizado',
+            'name' => 'Aprobado',
         ]);
 
         DB::table('states')->insert([
-            'name' => 'Aprobado',
+            'name' => 'No Aprobado',
         ]);
     }
 }

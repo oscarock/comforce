@@ -4,7 +4,7 @@
 <div class="container" id="app">
     <div class="row">
         <div class="col-md-12">
-            <h1 class="page-header text-center py-4">Mis Procesos</h1>
+            <h1 class="page-header text-center py-4">Procesos</h1>
         </div>
         <div class="col-md-7">
             <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#create"><i class="fas fa-plus-circle"></i> Nuevo Proceso</a><br><br>
@@ -26,9 +26,9 @@
                     <td>@{{ processes.municipality }}</td>
                     <td>
                         <span class="badge badge-primary" v-if="processes.state_id == 1">Creado</span>
-                        <span class="badge badge-warning" v-if="processes.state_id == 2">Finalizado</span>
-                        <span class="badge badge-success" v-if="processes.state_id == 3">Aprobado</span>
-                        <span class="badge badge-danger"  v-if="processes.state_id == 4">No Aprobado</span>
+                        <span class="badge badge-success" v-if="processes.state_id == 2">Aprobado</span>
+                        <span class="badge badge-danger"  v-if="processes.state_id == 3">No Aprobado</span>
+                        <span class="badge badge-success"  v-if="processes.state_id == 4">Finalizado</span>
                     </td>
                     <td>
                     <a href="#" v-on:click.prevent="viewProcesses(processes)"><i class="far fa-eye"></i></a>

@@ -22,6 +22,7 @@ class CreateProcessesTable extends Migration
             $table->dateTime('start_date')->nullable();
             $table->dateTime('end_date')->nullable();
             $table->integer('state_id')->unsigned()->nullable();
+            $table->text('observation')->nullable();
             $table->timestamps();
         });
     }

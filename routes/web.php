@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
@@ -26,6 +26,8 @@ Route::group(['middleware' => 'auth'], function () {
     });
     
     Route::get('saveDates', 'ProcessesController@saveDates');
+    Route::get('saveStates', 'ProcessesController@saveStates');
+    Route::get('finalizeState', 'ProcessesController@finalizeState');
     
     Route::resource('processes','ProcessesController');
 });

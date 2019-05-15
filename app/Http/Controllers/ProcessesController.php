@@ -6,12 +6,7 @@ use Illuminate\Http\Request;
 use App\Process;
 
 class ProcessesController extends Controller
-{
-    /*public function __contruct(){
-        $this->middleware('auth');
-        $this->middleware('guest');
-    }*/
-    
+{   
     /**
      * Display a listing of the resource.
      *
@@ -110,6 +105,19 @@ class ProcessesController extends Controller
         $processes = Process::findOrFail($request->input('id'));
         $processes->start_date = $request->input('start_date');
         $processes->end_date = $request->input('end_date');
+        $processes->save();
+    }
+
+    public function saveStates(Request $request){
+        $processes = Process::findOrFail($request->input('id'));
+        $processes->state_id = $request->input('state_id');
+        $processes->observation = $request->input('observation');
+        $processes->save();
+    }
+
+    public function finalizeState(Request $request){
+        $processes = Process::findOrFail($request->input('id'));
+        $processes->state_id = 4;
         $processes->save();
     }
 }

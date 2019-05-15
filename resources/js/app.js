@@ -11,7 +11,9 @@ new Vue({
         errors: [],
         id: "",
         start_date: "",
-        end_date: ""
+        end_date: "",
+        state_id: "",
+        observation: ""
     },
     
     methods: {
@@ -44,8 +46,6 @@ new Vue({
             window.location.href = urlShow
         },
         saveDates: function(id){
-            console.log("entre js")
-            console.log(id)
             var urlSaveDates = "../saveDates"
             axios.get(urlSaveDates, {
                 params: {
@@ -57,8 +57,47 @@ new Vue({
                 this.start_date = ""
                 this.end_date = ""
                 toastr.success("Guardado Correctamente")
+                setTimeout((function() {
+                    window.location.reload();
+                }), 2000);
             }).catch(error => {
-                //this.errors = error.response.data.errors
+                this.errors = error.response.data.errors
+            })
+        },
+        saveStates: function(id){
+            var urlSaveStates = "../saveStates"
+            axios.get(urlSaveStates, {
+                params: {
+                    id: id,
+                    state_id: this.state_id,
+                    observation: this.observation
+                }
+            }).then(response => {
+                this.state_id = ""
+                this.observation = ""
+                toastr.success("Guardado Correctamente")
+                setTimeout((function() {
+                    window.location.reload();
+                }), 2000);
+            }).catch(error => {
+                this.errors = error.response.data.errors
+            })
+        },
+        finalizeState: function(id){
+            var urlFinalizeState = "../finalizeState"
+            axios.get(urlFinalizeState, {
+                params: {
+                    id: id,
+                    state_id: this.state_id,
+                }
+            }).then(response => {
+                this.state_id = ""
+                toastr.success("Guardado Correctamente")
+                setTimeout((function() {
+                    window.location.reload();
+                }), 2000);
+            }).catch(error => {
+                this.errors = error.response.data.errors
             })
         }
     }
