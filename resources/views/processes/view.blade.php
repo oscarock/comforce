@@ -53,7 +53,7 @@
                     <form v-on:submit.prevent="saveStates({{$processes->id}})">
                         <label for="">Aprobar Procedimiento</label>
                         <select name="state_id" id="state_id" class="form-control" v-model="state_id">
-                            @php $states = App\State::where('id', '!=', 1)->get()  @endphp
+                            @php $states = App\State::where('id', '!=', 1)->where('id', '!=', 4)->get()  @endphp
                             <option value="">--Seleccionar--</option>
                             @foreach($states as $state)
                                 <option value="{{ $state->id }}">{{ $state->name }}</option>
