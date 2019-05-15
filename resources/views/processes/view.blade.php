@@ -22,8 +22,40 @@
         </div>
 
         <div class="col-md-6">
-            <h3>Cargar Documentos</h3>
-            <p>imagenes...</p>
+            <h3>Subida Documentos</h3>
+            <br>
+            @if ($message = Session::get('success'))
+                <div class="alert alert-success alert-block">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>{{ $message }}</strong>
+                </div>
+                <br>
+            @endif
+ 
+            @if (count($errors) > 0)
+                <div class="alert alert-danger">
+                    <strong>Opps!</strong> There were something went wrong with your input.
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                <br>
+            @endif
+            <form action="{{ url('save') }}" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+                @csrf
+                <div class="avatar-upload col-6">
+                    <div class=" form-group avatar-edit">
+                        <input type="hidden" name="process_id" value="{{ $processes->id }}">
+                        <input type='file' id="image" name="image[]" accept=".png, .jpg, .jpeg, .pdf" />
+                        <label for="imageUpload"></label>
+                    </div>
+                </div>
+                <div class="form-group col-3">
+                    <button type="submit" class="btn btn-outline-primary btn-sm">Guardar</button>
+                </div>
+            </form>
         </div>
 
         <div class="col-md-6 pt-5">
@@ -68,6 +100,15 @@
                     <p>{{ $processes->observation ? $processes->observation : 'Sin Observaciones' }}</p>
                 @endif
             </div>
+        </div>
+
+        <div class="col-md-10 pt-5">
+            <h3>Documentos Cargados</h3>
+            @foreach($documents as $document)
+                <!--<img src="{{asset('image/').'/'.$document->image}}" alt="">-->
+                <img src="{{url($document->image)}}" alt="">
+                <?php //var_dump($document->image); ?>
+            @endforeach
         </div>
     </div>
 </div>

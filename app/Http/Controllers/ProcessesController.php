@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Process;
+use App\FileUpload;
 
 class ProcessesController extends Controller
 {   
@@ -64,7 +65,9 @@ class ProcessesController extends Controller
     public function show($id)
     {
         $processes = Process::findOrFail($id);
-        return view('processes.view',compact('processes')); 
+        $documents = FileUpload::where('process_id', '=', $id)->get();
+
+        return view('processes.view',compact('processes','documents')); 
     }
 
     /**
