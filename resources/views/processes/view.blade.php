@@ -101,6 +101,13 @@
                 @endif
             </div>
         </div>
+
+        <div class="col-md-10 pt-5">
+            <h3>Documentos Cargados</h3>
+            @foreach($documents as $document)
+                <img src="{{asset('public/image/').'/'.$document->image}}" alt="{{ $document->imag }}" width="100px">
+            @endforeach
+        </div>
     </div>
 </div>
 @endsection

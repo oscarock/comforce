@@ -34,8 +34,6 @@ class ProcessesController extends Controller
             'municipality' => 'required'
         ]);
 
-        //Process::create($request->all());
-
         $processes = new Process;
         $processes->processes_id = uniqid();
         $processes->description = $request->input('description');
@@ -56,7 +54,9 @@ class ProcessesController extends Controller
     public function show($id)
     {
         $processes = Process::findOrFail($id);
-        return view('processes.view',compact('processes')); 
+        $documents = FileUpload::where('process_id', '=', $id)->get();
+
+        return view('processes.view',compact('processes','documents')); 
     }
 
     public function saveDates(Request $request){
@@ -95,7 +95,7 @@ class ProcessesController extends Controller
         $processes4 = DB::table('processes')
         ->where('state_id', '=', 4)
         ->count();
-
+        
         echo json_encode([$processes1,$processes2,$processes3,$processes4]);
     }
 }
