@@ -101,15 +101,6 @@
                 @endif
             </div>
         </div>
-
-        <div class="col-md-10 pt-5">
-            <h3>Documentos Cargados</h3>
-            @foreach($documents as $document)
-                <!--<img src="{{asset('image/').'/'.$document->image}}" alt="">-->
-                <img src="{{url($document->image)}}" alt="">
-                <?php //var_dump($document->image); ?>
-            @endforeach
-        </div>
     </div>
 </div>
 @endsection
