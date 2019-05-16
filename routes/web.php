@@ -19,17 +19,16 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
 Route::group(['middleware' => 'auth'], function () {
     Route::get('my-processes', function () {
         return view('processes.index');
     });
-    
     Route::get('saveDates', 'ProcessesController@saveDates');
     Route::get('saveStates', 'ProcessesController@saveStates');
     Route::get('finalizeState', 'ProcessesController@finalizeState');
     Route::post('save', 'ImageController@save');
-    Route::resource('processes','ProcessesController');
+    Route::get('selectPie', 'ProcessesController@selectPie');
+    Route::resource('processes','ProcessesController')->except('create','edit', 'update','destroy');
 });
 
 

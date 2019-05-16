@@ -2,6 +2,7 @@ new Vue({
     el: '#app',
     created: function(){
         this.getAll()
+        this.getSelectPie()
     },
     data: {
         processes:[],
@@ -13,14 +14,28 @@ new Vue({
         start_date: "",
         end_date: "",
         state_id: "",
-        observation: ""
-    },
-    
+        observation: "",
+        labels: [
+            "Creado",
+            "Aprobado",
+            "No Aprobado",
+            "Finalizado"
+          ],
+        dataPie:[],
+    },    
     methods: {
         getAll: function(page){
             var urlProcesses = "processes"
             axios.get(urlProcesses).then(response => {
                this.processes = response.data
+            })
+        },
+        getSelectPie: function(page){
+            var urlPie = "selectPie"
+            axios.get(urlPie).then(response => {
+               this.dataPie = response.data
+               console.log(this.dataPie)
+               this.startPie(this.$refs.canvas, 'pie', this.dataPie)
             })
         },
         createProcesses: function(){
@@ -98,6 +113,35 @@ new Vue({
                 }), 2000);
             }).catch(error => {
                 this.errors = error.response.data.errors
+            })
+        },
+        startPie: function(canvas, type, data){
+            let chart = new Chart(canvas, {
+              type: type,
+              data: {
+                labels: this.labels,
+                datasets: [
+                {
+                    data: data,
+                    backgroundColor: [
+                      "#007bff",
+                      "#28a745",
+                      "#dc3545",
+                      "#ffc107"
+                    ],
+                    hoverBackgroundColor: [
+                      "#007bff",
+                      "#28a745",
+                      "#dc3545",
+                      "#ffc107"
+                    ]
+                  }]
+                },
+                options: {
+                    animation:{
+                        animateScale:true
+                    }
+                }
             })
         }
     }

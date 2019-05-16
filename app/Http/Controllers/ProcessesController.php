@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Process;
 use App\FileUpload;
+use Illuminate\Support\Facades\DB;
 
 class ProcessesController extends Controller
 {   
@@ -17,16 +18,6 @@ class ProcessesController extends Controller
     {
         $processes = Process::get();
         return $processes;
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -65,43 +56,7 @@ class ProcessesController extends Controller
     public function show($id)
     {
         $processes = Process::findOrFail($id);
-        $documents = FileUpload::where('process_id', '=', $id)->get();
-
-        return view('processes.view',compact('processes','documents')); 
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return view('processes.view',compact('processes')); 
     }
 
     public function saveDates(Request $request){
@@ -122,5 +77,25 @@ class ProcessesController extends Controller
         $processes = Process::findOrFail($request->input('id'));
         $processes->state_id = 4;
         $processes->save();
+    }
+
+    public function selectPie(){
+        $processes1 = DB::table('processes')
+        ->where('state_id', '=', 1)
+        ->count();
+
+        $processes2 = DB::table('processes')
+        ->where('state_id', '=', 2)
+        ->count();
+
+        $processes3 = DB::table('processes')
+        ->where('state_id', '=', 3)
+        ->count();
+
+        $processes4 = DB::table('processes')
+        ->where('state_id', '=', 4)
+        ->count();
+
+        echo json_encode([$processes1,$processes2,$processes3,$processes4]);
     }
 }
