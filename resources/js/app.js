@@ -34,7 +34,6 @@ new Vue({
             var urlPie = "selectPie"
             axios.get(urlPie).then(response => {
                this.dataPie = response.data
-               console.log(this.dataPie)
                this.startPie(this.$refs.canvas, 'pie', this.dataPie)
             })
         },
